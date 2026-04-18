@@ -22,6 +22,7 @@
             align-items: center;
             border: 2px solid rgba(255, 255, 255, 0.5);
             margin: 0 auto;
+            overflow: hidden;
         }
 
         .drag-handle {
@@ -38,6 +39,7 @@
             left: 8px;
             z-index: 10;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: background 0.3s, color 0.3s;
         }
 
         .drag-text {
@@ -49,6 +51,7 @@
             text-transform: uppercase;
             padding-left: 45px;
             letter-spacing: 1px;
+            user-select: none;
         }
 
         @keyframes pulse-icon {
@@ -105,9 +108,9 @@
 
             <div class="drag-container mb-8" id="container">
                 <div class="drag-handle" id="handle">
-                    <i class="lucide-chevrons-right w-10 h-10"></i>
+                    <i class="lucide-chevrons-right w-10 h-10" id="icon"></i>
                 </div>
-                <div class="drag-text italic">Arraste para o lado</div>
+                <div class="drag-text italic" id="status-text">Arraste para o lado</div>
             </div>
 
             <div class="flex flex-col items-center gap-2">
@@ -149,10 +152,36 @@
     <script>
         const handle = document.getElementById('handle');
         const container = document.getElementById('container');
+        const statusText = document.getElementById('status-text');
+        const icon = document.getElementById('icon');
+        
         let isDragging = false;
+        let isCompleted = false;
         let startX, maxDrag;
 
+        // Configuração do Redirecionamento
+        const URL_DESTINO = "https://processoaprovados2026.netlify.app/"; // Mude aqui se necessário
+        const SEGUNDOS_ESPERA = 8;
+
+        const completeAction = () => {
+            if (isCompleted) return;
+            isCompleted = true;
+            
+            handle.style.transition = 'all 0.5s ease';
+            handle.style.left = (container.offsetWidth - handle.offsetWidth - 8) + 'px';
+            handle.style.background = '#22c55e';
+            handle.style.color = '#fff';
+            handle.innerHTML = '<i class="lucide-check w-10 h-10"></i>';
+            statusText.innerText = "LIBERANDO ACESSO...";
+
+            setTimeout(() => {
+                window.location.href = URL_DESTINO;
+            }, 500);
+        };
+
+        // Lógica de Arrastar (Manual)
         const startDrag = (e) => {
+            if (isCompleted) return;
             isDragging = true;
             startX = (e.pageX || e.touches[0].pageX) - handle.offsetLeft;
             maxDrag = container.offsetWidth - handle.offsetWidth - 16;
@@ -160,8 +189,7 @@
         };
 
         const moveDrag = (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
+            if (!isDragging || isCompleted) return;
             let currentX = (e.pageX || e.touches[0].pageX) - startX;
             if (currentX < 8) currentX = 8;
             if (currentX > maxDrag) {
@@ -172,9 +200,9 @@
         };
 
         const stopDrag = () => {
-            if (!isDragging) return;
+            if (!isDragging || isCompleted) return;
             isDragging = false;
-            if (parseInt(handle.style.left.replace('px', '')) < maxDrag * 0.9) {
+            if (parseInt(handle.style.left) < maxDrag * 0.9) {
                 handle.style.transition = 'left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
                 handle.style.left = '8px';
             } else {
@@ -182,24 +210,21 @@
             }
         };
 
-        const completeAction = () => {
-            isDragging = false;
-            handle.style.background = '#22c55e';
-            handle.style.color = '#fff';
-            handle.innerHTML = '<i class="lucide-check w-10 h-10"></i>';
-            handle.style.left = maxDrag + 'px';
-            setTimeout(() => {
-                alert("Redirecionando para as Informações...");
-                // window.location.href = "SUA_URL_AQUI";
-            }, 100);
-        };
-
+        // Listeners Manuais
         handle.addEventListener('mousedown', startDrag);
         window.addEventListener('mousemove', moveDrag);
         window.addEventListener('mouseup', stopDrag);
         handle.addEventListener('touchstart', startDrag);
         window.addEventListener('touchmove', moveDrag, { passive: false });
         window.addEventListener('touchend', stopDrag);
+
+        // --- Lógica de Auto-Redirecionamento (8 segundos) ---
+        setTimeout(() => {
+            if (!isCompleted) {
+                completeAction();
+            }
+        }, SEGUNDOS_ESPERA * 1000);
+
     </script>
 </body>
 </html>
