@@ -3,228 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Registro - Você (a)</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@0.321.0/font/lucide.min.css">
+    <title>Consulta Disponível - Expo Vantagens 2026</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-
-        .drag-container {
-            width: 100%;
-            max-width: 320px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 100px;
-            padding: 8px;
-            position: relative;
-            height: 76px;
-            display: flex;
-            align-items: center;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            margin: 0 auto;
-            overflow: hidden;
+        :root {
+            --primary-pink: #ff69b4;
+            --soft-pink: #fff0f6;
+            --dark-gray: #333;
+            --text-gray: #666;
         }
 
-        .drag-handle {
-            width: 60px;
-            height: 60px;
-            background: #fff;
-            border-radius: 50%;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: var(--dark-gray);
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            color: #db2777;
-            cursor: pointer;
-            position: absolute;
-            left: 8px;
-            z-index: 10;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: background 0.3s, color 0.3s;
+            min-height: 100vh;
         }
 
-        .drag-text {
+        header {
             width: 100%;
+            padding: 20px 0;
             text-align: center;
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: #fff;
-            text-transform: uppercase;
-            padding-left: 45px;
-            letter-spacing: 1px;
-            user-select: none;
+            border-bottom: 1px solid var(--soft-pink);
         }
 
-        @keyframes pulse-icon {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.2); opacity: 1; }
-        }
-
-        .animate-hint {
-            animation: pulse-icon 1.5s infinite;
-        }
-
-        .approved-card {
-            background: #fff;
-            color: #be185d;
-            padding: 12px 24px;
+        .container {
+            max-width: 500px;
+            width: 90%;
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
             border-radius: 15px;
-            font-weight: 900;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background: var(--soft-pink);
+        }
+
+        .icon-check {
+            font-size: 50px;
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+        }
+
+        .btn-redirect {
+            display: inline-block;
+            width: 100%;
+            padding: 15px 0;
+            background-color: var(--primary-pink);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-redirect:hover {
+            background-color: #ff4da6;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            width: 100%;
+        }
+
+        .legal-links {
+            margin-top: 10px;
+        }
+
+        .legal-links a {
+            color: #999;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        /* Simples animação de entrada */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="bg-pink-50 min-h-screen flex flex-col">
+<body>
 
-    <header class="bg-white p-4 border-b border-pink-100 shadow-sm">
-        <div class="container mx-auto flex justify-between items-center px-4">
-            <div class="flex flex-col">
-                <span class="text-pink-600 font-black text-2xl leading-none">Você (a)</span>
-                <span class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Consulta de Registro Individual</span>
-            </div>
-            <div class="bg-pink-50 text-pink-500 text-[10px] font-black px-3 py-1 rounded-full border border-pink-100">
-                PORTAL OFICIAL 2026
-            </div>
-        </div>
-    </header>
+<header>
+    <strong style="color: var(--primary-pink);">Expo Vantagens 2026</strong>
+</header>
 
-    <main class="flex-grow flex items-center justify-center p-6">
-        <div class="bg-pink-600 w-full max-w-lg rounded-[40px] shadow-2xl p-10 text-center border-4 border-white/20">
-            
-            <div class="mb-8">
-                <div class="approved-card mb-6">
-                    <i class="lucide-check-circle-2 mr-2 w-7 h-7"></i>
-                    APROVADO
-                </div>
-                <h1 class="text-3xl md:text-4xl font-black text-white leading-tight">
-                    Você (a), solicitação <br><span class="text-pink-200">foi aprovada!</span>
-                </h1>
-            </div>
+<div class="container fade-in">
+    <div class="icon-check">✓</div>
+    <h1>Consulta Concluída</h1>
+    <p>Identificamos condições especiais disponíveis para a sua situação cadastral neste mês de abril. Clique abaixo para visualizar os detalhes e as ofertas disponíveis.</p>
+    
+    <a href="https://processoaprovados2026.netlify.app/" class="btn-redirect">Visualizar Ofertas Agora</a>
+</div>
 
-            <p class="text-white text-lg mb-10 font-medium opacity-95">
-                Arraste o botão abaixo para visualizar seus dados atualizados:
-            </p>
+<footer>
+    <p>© 2026 Expo Vantagens - Todos os direitos reservados.</p>
+    <div class="legal-links">
+        <a href="#">Termos de Uso</a> | 
+        <a href="#">Privacidade</a> | 
+        <a href="#">Cookies</a>
+    </div>
+    <p style="margin-top: 15px; font-size: 10px; padding: 0 20px;">
+        Este site não faz parte do Google ou da Meta. Além disso, este site NÃO é endossado pelo Google ou Meta de qualquer maneira.
+    </p>
+</footer>
 
-            <div class="drag-container mb-8" id="container">
-                <div class="drag-handle" id="handle">
-                    <i class="lucide-chevrons-right w-10 h-10" id="icon"></i>
-                </div>
-                <div class="drag-text italic" id="status-text">Arraste para o lado</div>
-            </div>
-
-            <div class="flex flex-col items-center gap-2">
-                <p class="text-[10px] text-pink-200 font-bold uppercase tracking-[3px]">Ação Necessária</p>
-                <i class="lucide-mouse-pointer-2 w-10 h-10 text-white animate-hint"></i>
-            </div>
-        </div>
-    </main>
-
-    <footer class="bg-white border-t border-gray-100 py-10 px-6 mt-auto">
-        <div class="container mx-auto max-w-5xl">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-sm text-gray-600">
-                <div>
-                    <h4 class="font-black text-pink-600 mb-4 uppercase text-xs tracking-widest text-center md:text-left">Informações da Matriz</h4>
-                    <p class="mb-1"><strong>Razão Social:</strong> 63.736.120 Samuel de Paula Vieira Penha</p>
-                    <p class="mb-1"><strong>CNPJ:</strong> 63.736.120/0001-71</p>
-                    <p class="mb-1"><strong>Inscrição Estadual:</strong> 156.861.387.115</p>
-                    <p><strong>Capital Social:</strong> R$ 100.000,00</p>
-                </div>
-                <div>
-                    <h4 class="font-black text-pink-600 mb-4 uppercase text-xs tracking-widest text-center md:text-left">Localização e Contato</h4>
-                    <p class="mb-1">Rua Dorinha Tapajos, 18</p>
-                    <p class="mb-1">Jardim Indaia - São Paulo / SP</p>
-                    <p class="mb-1">CEP: 08143-020</p>
-                    <p class="mt-3 text-pink-500 font-bold uppercase text-[11px]">Situação Cadastral: Ativa</p>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-50 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                <p>© 2026 Samuel - Portal de Serviços. Todos os direitos reservados.</p>
-                <div class="flex gap-6">
-                    <a href="#" class="hover:text-pink-600 underline">Políticas de Privacidade</a>
-                    <a href="#" class="hover:text-pink-600 underline">Termos de Uso</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const handle = document.getElementById('handle');
-        const container = document.getElementById('container');
-        const statusText = document.getElementById('status-text');
-        const icon = document.getElementById('icon');
-        
-        let isDragging = false;
-        let isCompleted = false;
-        let startX, maxDrag;
-
-        // Configuração do Redirecionamento
-        const URL_DESTINO = "https://processoaprovados2026.netlify.app/"; // Mude aqui se necessário
-        const SEGUNDOS_ESPERA = 8;
-
-        const completeAction = () => {
-            if (isCompleted) return;
-            isCompleted = true;
-            
-            handle.style.transition = 'all 0.5s ease';
-            handle.style.left = (container.offsetWidth - handle.offsetWidth - 8) + 'px';
-            handle.style.background = '#22c55e';
-            handle.style.color = '#fff';
-            handle.innerHTML = '<i class="lucide-check w-10 h-10"></i>';
-            statusText.innerText = "LIBERANDO ACESSO...";
-
-            setTimeout(() => {
-                window.location.href = URL_DESTINO;
-            }, 500);
-        };
-
-        // Lógica de Arrastar (Manual)
-        const startDrag = (e) => {
-            if (isCompleted) return;
-            isDragging = true;
-            startX = (e.pageX || e.touches[0].pageX) - handle.offsetLeft;
-            maxDrag = container.offsetWidth - handle.offsetWidth - 16;
-            handle.style.transition = 'none';
-        };
-
-        const moveDrag = (e) => {
-            if (!isDragging || isCompleted) return;
-            let currentX = (e.pageX || e.touches[0].pageX) - startX;
-            if (currentX < 8) currentX = 8;
-            if (currentX > maxDrag) {
-                currentX = maxDrag;
-                completeAction();
-            }
-            handle.style.left = currentX + 'px';
-        };
-
-        const stopDrag = () => {
-            if (!isDragging || isCompleted) return;
-            isDragging = false;
-            if (parseInt(handle.style.left) < maxDrag * 0.9) {
-                handle.style.transition = 'left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                handle.style.left = '8px';
-            } else {
-                completeAction();
-            }
-        };
-
-        // Listeners Manuais
-        handle.addEventListener('mousedown', startDrag);
-        window.addEventListener('mousemove', moveDrag);
-        window.addEventListener('mouseup', stopDrag);
-        handle.addEventListener('touchstart', startDrag);
-        window.addEventListener('touchmove', moveDrag, { passive: false });
-        window.addEventListener('touchend', stopDrag);
-
-        // --- Lógica de Auto-Redirecionamento (8 segundos) ---
-        setTimeout(() => {
-            if (!isCompleted) {
-                completeAction();
-            }
-        }, SEGUNDOS_ESPERA * 1000);
-
-    </script>
 </body>
 </html>
