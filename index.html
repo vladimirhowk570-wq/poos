@@ -3,138 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta Disponível - Expo Vantagens 2026</title>
+    <title>Informativo 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-pink: #ff69b4;
-            --soft-pink: #fff0f6;
-            --dark-gray: #333;
-            --text-gray: #666;
+            --primary-color: #FF69B4; /* Rosa Principal */
+            --secondary-color: #ffffff;
+            --text-color: #333;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        body, html {
             margin: 0;
             padding: 0;
-            background-color: #ffffff;
-            color: var(--dark-gray);
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--secondary-color);
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            min-height: 100vh;
-        }
-
-        header {
-            width: 100%;
-            padding: 20px 0;
-            text-align: center;
-            border-bottom: 1px solid var(--soft-pink);
+            overflow: hidden;
         }
 
         .container {
-            max-width: 500px;
-            width: 90%;
-            margin-top: 40px;
             text-align: center;
             padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            background: var(--soft-pink);
+            max-width: 400px;
+            width: 90%;
         }
 
-        .icon-check {
-            font-size: 50px;
-            color: #2ecc71;
-            margin-bottom: 15px;
+        .icon-box {
+            background-color: var(--primary-color);
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            margin: 0 auto 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(255, 105, 180, 0.3);
+        }
+
+        .icon-box svg {
+            width: 40px;
+            fill: white;
         }
 
         h1 {
-            font-size: 22px;
-            color: var(--primary-pink);
+            font-size: 24px;
+            color: var(--text-color);
             margin-bottom: 10px;
+            font-weight: 700;
         }
 
         p {
             font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
             line-height: 1.5;
-            color: var(--text-gray);
-            margin-bottom: 25px;
         }
 
-        .btn-redirect {
-            display: inline-block;
-            width: 100%;
-            padding: 15px 0;
-            background-color: var(--primary-pink);
+        .btn-pressel {
+            background-color: var(--primary-color);
             color: white;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 8px;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-weight: 700;
             font-size: 18px;
-            transition: background 0.3s;
-            border: none;
-            cursor: pointer;
+            display: block;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            animation: pulse 2s infinite;
         }
 
-        .btn-redirect:hover {
-            background-color: #ff4da6;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
-        footer {
-            margin-top: auto;
-            padding: 20px;
+        .footer-text {
+            margin-top: 40px;
             font-size: 12px;
-            color: #999;
-            text-align: center;
-            width: 100%;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .legal-links {
-            margin-top: 10px;
-        }
-
-        .legal-links a {
-            color: #999;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-
-        /* Simples animação de entrada */
-        .fade-in {
-            animation: fadeIn 0.8s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Estilo para parecer um App */
+        .card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 30px;
+            border: 1px solid #f0f0f0;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <strong style="color: var(--primary-pink);">Expo Vantagens 2026</strong>
-</header>
+    <div class="container">
+        <div class="card">
+            <div class="icon-box">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            
+            <h1>Acesso Liberado</h1>
+            <p>Clique no botão abaixo para acessar o portal oficial e verificar suas informações.</p>
 
-<div class="container fade-in">
-    <div class="icon-check">✓</div>
-    <h1>Consulta Concluída</h1>
-    <p>Identificamos condições especiais disponíveis para a sua situação cadastral neste mês de abril. Clique abaixo para visualizar os detalhes e as ofertas disponíveis.</p>
-    
-    <a href="https://processoaprovados2026.netlify.app/" class="btn-redirect">Visualizar Ofertas Agora</a>
-</div>
+            <a href="https://processoaprovados2026.netlify.app" class="btn-pressel">
+                CONTINUAR AGORA
+            </a>
 
-<footer>
-    <p>© 2026 Expo Vantagens - Todos os direitos reservados.</p>
-    <div class="legal-links">
-        <a href="#">Termos de Uso</a> | 
-        <a href="#">Privacidade</a> | 
-        <a href="#">Cookies</a>
+            <div class="footer-text">
+                Conexão Segura e Criptografada
+            </div>
+        </div>
     </div>
-    <p style="margin-top: 15px; font-size: 10px; padding: 0 20px;">
-        Este site não faz parte do Google ou da Meta. Além disso, este site NÃO é endossado pelo Google ou Meta de qualquer maneira.
-    </p>
-</footer>
 
 </body>
 </html>
